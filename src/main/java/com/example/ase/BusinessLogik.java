@@ -29,8 +29,14 @@ public class BusinessLogik {
             System.out.println("bubbleSort" + i);
         }
     **/
+        /**
         for (int i: selectionSort(numbers)) {
             System.out.println("SelectionSort" + i);
+        }
+         **/
+
+        for (int i: selectionSortReverse(numbers)) {
+            System.out.println("SelectionSortReverse" + i);
         }
 
 
@@ -62,6 +68,36 @@ public class BusinessLogik {
 
 
 
+        }
+        System.out.println(max);
+        return array;
+    }
+
+
+    public static int[] selectionSortReverse(int[] array) {
+        int length = array.length-1;
+        int counter =0;
+        int max = 0;
+        for (int i = length; i >0; i--) {
+            int min = array[i];
+            int minId = i;
+
+            for (int j = i-1; j >0 ; j--) {
+                if (array[j] < min) {
+                    min = array[j];
+                    minId = j;
+
+                }
+            }
+            counter++;
+
+            // swapping
+            int temp = array[i];
+            array[i] = min;
+            array[minId] = temp;
+            if(counter >= max){
+                max = counter;
+            }
         }
         System.out.println(max);
         return array;
