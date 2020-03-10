@@ -1,0 +1,48 @@
+import java.util.Iterator;
+import basic.PriorityQueue;
+
+public class ShortestPathsTree extends RootedTree
+{
+    private WeightedUndirectedGraph graph;     // Graph mit Kantengewichtung
+    private int s;           // Startknoten
+
+    public ShortestPathsTree(WeightedUndirectedGraph graph, int s)
+    {
+        super(graph.getSize());
+        this.graph=graph;
+        this.s=s;
+        computeShortestPaths();
+    }
+
+    private void computeShortestPaths()
+    {
+        int u, v;
+        double d;
+        Iterator<Integer> it;
+        PriorityQueue<Integer> pq=new PriorityQueue<Integer>(-1);  // höchste Priorität: Minimum
+        setDistance(s, 0);        // Startknoten s
+        setPredecessor(s, -1);
+        pq.insert(0, s);
+        while (!pq.isEmpty())
+        {
+            u=pq.extractObj();
+            if (!inTree(u))
+            {
+                toTree(u);
+                it=graph.getNeighbourIterator(u);
+                while (it.hasNext())
+                {
+                    v=it.next();
+                    d=getDistance(u)+graph.getWeight(u, v);
+                    if (d<getDistance(v))
+                    {
+                        setDistance(v, d);
+                        setPredecessor(v, u);
+                        pq.insert(d, v);
+                    }
+                }
+            }
+        }
+    }
+
+} // end class ShortestPathsTree
