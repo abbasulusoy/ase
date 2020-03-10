@@ -1,5 +1,7 @@
 package com.example.ase;
 
+import java.util.Arrays;
+
 public class BusinessLogik {
 
     public static int[] bubbleSort(int [] numbers){
@@ -21,9 +23,35 @@ public class BusinessLogik {
     }
 
     public static void main(String[] args) {
-        int[] numbers = { 5, 8, 14, 1, 5678 };
+        int[] numbers = {4, 3, 2, 1};
+        /**
         for (int i: bubbleSort(numbers)) {
-            System.out.println("sortedList" + i);
+            System.out.println("bubbleSort" + i);
         }
+    **/
+        for (int i: selectionSort(numbers)) {
+            System.out.println("SelectionSort" + i);
+        }
+
+
     }
+
+    public static int[] selectionSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int min = array[i];
+            int minId = i;
+            for (int j = i+1; j < array.length; j++) {
+                if (array[j] < min) {
+                    min = array[j];
+                    minId = j;
+                }
+            }
+            // swapping
+            int temp = array[i];
+            array[i] = min;
+            array[minId] = temp;
+        }
+        return array;
+    }
+
 }
