@@ -23,7 +23,7 @@ public class BusinessLogik {
     }
 
     public static void main(String[] args) {
-        int[] numbers = {4, 3, 2, 1};
+        int[] numbers = {6,5,4,3, 2, 1,};
         /**
         for (int i: bubbleSort(numbers)) {
             System.out.println("bubbleSort" + i);
@@ -37,20 +37,33 @@ public class BusinessLogik {
     }
 
     public static int[] selectionSort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
+        int counter =0;
+        int max = 0;
+        for (int i = 0; i < array.length-1; i++) {
             int min = array[i];
             int minId = i;
+
             for (int j = i+1; j < array.length; j++) {
                 if (array[j] < min) {
                     min = array[j];
                     minId = j;
+
                 }
             }
+            counter++;
+
             // swapping
             int temp = array[i];
             array[i] = min;
             array[minId] = temp;
+            if(counter > max){
+                max = counter;
+            }
+
+
+
         }
+        System.out.println(max);
         return array;
     }
 
